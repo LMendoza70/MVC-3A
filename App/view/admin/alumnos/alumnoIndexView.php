@@ -9,6 +9,8 @@
         Lorem ipsum dolor, sit amet consectetur adipisicing elit. Explicabo quidem sunt minus, reiciendis nisi dolorem cupiditate, modi dicta fugit sapiente cumque, sit tempora quisquam eaque obcaecati ratione ab cum necessitatibus!
     </p>
 
+    <h3><a href="http://localhost/php-3a?C=alumnoController&M=callInsertForm">Insertar nuevo alumno</a></h3>
+
     <table border="1">
         <thead>
             <tr>

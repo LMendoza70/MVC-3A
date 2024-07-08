@@ -20,5 +20,10 @@
         public function delete($id){
 
         }
+
+        public function callInsertForm(){
+            $vista="App/view/admin/alumnos/insertForm.php";
+            include_once("App/view/admin/plantillaView.php");
+        }
     }
 ?>
