@@ -25,5 +25,28 @@
             $vista="App/view/admin/alumnos/insertForm.php";
             include_once("App/view/admin/plantillaView.php");
         }
+        public function insert(){
+            if($_SERVER['REQUEST_METHOD']=='POST'){
+                $alumno= array(
+                    'nombre'=>$_POST['nombre'],
+                    'apellido'=>$_POST['apellido'],
+                    'edad'=>$_POST['edad'],
+                    'correo'=>$_POST['correo'],
+                    'fecha'=>$_POST['fecha'],    
+                );
+                $alumnomodel= new alumnoModel();
+                $resultado=$alumnomodel->insert($alumno);
+                if($resultado){
+                    header("location:http://localhost/php-3a/?C=alumnoController&M=index");
+                }else{
+                    header("location:http://localhost/php-3a");
+                }
+            }
+        }
+
+        public function callEdditForm($id){
+            if($_SERVER['REQUEST_METHOD'] == 'GET')
+
+        }
     }
 ?>

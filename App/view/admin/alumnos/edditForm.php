@@ -1,6 +1,6 @@
 <div>
     <h1>Formulario de insertar</h1>
-    <form action="http://localhost/php-3a/?C=alumnoController&M=insert" method="post">
+    <form action="http://localhost/php-3a/?C=alumnoController&M=eddit" method="post">
         <div>
             <label for="nombre">Nombre</label>
             <input type="text" name="nombre" require>

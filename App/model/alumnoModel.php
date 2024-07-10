@@ -71,14 +71,43 @@
             return $respuesta;
         }
 
-        public function insert($nombre, $apellido, $edad, $correo,$fecha){
-            $consulta="INSERT INTO alumnos (nombre, apellido, edad, correo_electronico, fecha_nacimineto) 
+        public function insert($alumno){
+            if(!isset($alumno['nombre'], $alumno['edad'], $alumno['apellido'], $alumno['correo'], $alumno['fecha'])){
+                return false;
+            }
+            $nombre=$alumno['nombre'];
+            $apellido=$alumno['apellido'];
+            $edad=$alumno['edad'];
+            $correo=$alumno['correo'];
+            $fecha=$alumno['fecha'];
+            $consulta="INSERT INTO alumnos (nombre, apellido, edad, correo_electronico, fecha_nacimiento) 
             VALUES ('$nombre','$apellido',$edad,'$correo','$fecha')";
             $coneccion= $this->DBConecction->getConeccion();
             $resultado=$coneccion->query($consulta);
             $respuesta= $resultado ? true:false;
             $this->DBConecction->closeConeccion();
             return $respuesta;
+        }
+
+        public function eddit($alumno){
+            if(!isset($alumno['id'],$alumno['nombre'], $alumno['edad'], $alumno['apellido'], $alumno['correo'], $alumno['fecha'])){
+                return false;
+            }
+            $id=$alumno['id'];
+            $nombre=$alumno['nombre'];
+            $apellido=$alumno['apellido'];
+            $edad=$alumno['edad'];
+            $correo=$alumno['correo'];
+            $fecha=$alumno['fecha']; 
+            
+            $consulta="UPDATE alumnos SET nombre='$nombre', apellido='$apellido', 
+            edad=$edad, correo_electronico='$correo', fecha_nacimiento='$fecha' 
+            WHERE id_alumno=$id";
+            $coneccion= $this->DBConecction->getConeccion();
+            $resultado=$coneccion->query($consulta);
+            $respuesta=$resultado?true:false;
+            $this->DBConecction->closeConeccion();
+            return $respuesta;                   
         }
 
         
