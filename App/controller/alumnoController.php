@@ -17,8 +17,17 @@
             include_once("app/view/admin/plantillaView.php");
         }
 
-        public function delete($id){
-
+        public function delete(){
+            if($_SERVER['REQUEST_METHOD']=='GET'){
+                $id=$_GET['id'];
+                $this->alumnomodel=new alumnoModel();
+                $respuesta=$this->alumnomodel->delete($id);
+                if($respuesta){
+                    header("location:http://localhost/php-3a/?C=alumnoController&M=index");
+                }else{
+                    header("location:http://localhost/php-3a");
+                }
+            }
         }
 
         public function callInsertForm(){
@@ -44,9 +53,37 @@
             }
         }
 
-        public function callEdditForm($id){
-            if($_SERVER['REQUEST_METHOD'] == 'GET')
-
+        public function callFormEddit(){
+            if($_SERVER['REQUEST_METHOD']=='GET'){
+                $id=$_GET['id'];
+                $this->alumnomodel=new alumnoModel();
+                $datos=$this->alumnomodel->getById($id);
+                $vista="app/view/admin/alumnos/edditForm.php";
+                include_once("app/view/admin/plantillaView.php");
+            }
         }
+
+        public function eddit(){
+            if($_SERVER['REQUEST_METHOD']=='POST'){
+                //creamos el arreglo
+                $alumno= array(
+                    'id'=>$_POST['id'],
+                    'nombre'=>$_POST['nombre'],
+                    'apellido'=>$_POST['apellido'],
+                    'edad'=>$_POST['edad'],
+                    'correo'=>$_POST['correo'],
+                    'fecha'=>$_POST['fecha']
+                );
+                $this->alumnomodel= new alumnoModel();
+                $respuesta=$this->alumnomodel->eddit($alumno);
+                if($respuesta){
+                    header("location:http://localhost/php-3a/?C=alumnoController&M=index");
+                }else{
+                    header("location:http://localhost/php-3a");
+                }
+            }
+        }
+
+        
     }
 ?>

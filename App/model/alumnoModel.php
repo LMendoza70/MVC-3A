@@ -55,6 +55,7 @@
         public function delete($id){
             //paso1 
             $consulta = "DELETE FROM alumnos WHERE id_alumno = ". $id;
+
             //paso 2
             $coneccion = $this->DBConecction->getConeccion();
             //paso 3
