@@ -12,7 +12,7 @@
         <h1>UTHH Por ser siempre los mejores</h1>
         <nav class="navbar">
             <ul>
-                <li><a href="#">Inicio</a></li>
+                <li><a href="http://localhost/php-3a">Inicio</a></li>
                 <li><a href="http://localhost/php-3a?C=usuarioController&M=callFormLogin">Login</a></li>
             </ul>
         </nav> 

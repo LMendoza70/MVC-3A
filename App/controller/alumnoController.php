@@ -14,7 +14,14 @@
             $datos=$this->alumnomodel->getAll();
             //pasamos esos datos a la vista, es decir a la pagina que va a visualizar el usuario final 
             $vista="app/view/admin/alumnos/alumnoIndexView.php";
-            include_once("app/view/admin/plantillaView.php");
+            session_start();
+            if(isset($_SESSION['logedin']) && $_SESSION['logedin']==true){
+                include_once("app/view/admin/plantillaView.php");
+            }else{
+                $vista="app/view/admin/usuarios/formLoginView.php";
+                include_once("app/view/admin/plantillaView.php");
+            }
+            
         }
 
         public function delete(){
@@ -31,8 +38,16 @@
         }
 
         public function callInsertForm(){
-            $vista="App/view/admin/alumnos/insertForm.php";
-            include_once("App/view/admin/plantillaView.php");
+            session_start();
+            if(isset($_SESSION['logedin']) && $_SESSION['logedin']==true){
+                $vista="App/view/admin/alumnos/insertForm.php";
+                include_once("App/view/admin/plantillaView.php");
+            }else{
+                /*$vista="App/view/admin/usuarios/formLoginView.php";
+                include_once("App/view/admin/plantilla2View.php");*/
+                header("location:http://localhost/php-3a/?C=usuarioController&M=callFormLogin");
+            }
+            
         }
         public function insert(){
             if($_SERVER['REQUEST_METHOD']=='POST'){
@@ -54,6 +69,7 @@
         }
 
         public function callFormEddit(){
+            
             if($_SERVER['REQUEST_METHOD']=='GET'){
                 $id=$_GET['id'];
                 $this->alumnomodel=new alumnoModel();
